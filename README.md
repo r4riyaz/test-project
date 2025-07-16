@@ -38,12 +38,13 @@ devops-project/
 
 Before you begin, ensure you have the following:
 
-- You need a Base machine/Virtual machine for operations
+- a Base machine/Virtual machine for operations
 - Terraform installed on your Base Machine/Virtual Machine [Install Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli#install-terraform)
+- VSCode Installed on your Base Machine/Virtual Machine [Install VSCode](https://code.visualstudio.com/docs/setup/linux)
 - AWS account with an IAM user and access keys
 - EC2 key pair (.pem file)
 - AWS CLI installed & configured on your Base Machine/Virtual Machine [Install AWS CLI](https://docs.aws.amazon.com/cli/v1/userguide/install-linux.html)
-- GitHub account and repository
+- GitHub account and a repository without Readme file.
 - Git Installed locally on your Base Machine/Virtual Machine [Install Git](https://github.com/git-guides/install-git#install-git-on-linux)
 
 ---
@@ -151,65 +152,65 @@ terraform apply
 ```
 ---
 
-### ✅ 6. Configure Jenkins Pipeline
+### ✅ 3. Configure Jenkins for Distributed Builds.
 
-#### Sample `Jenkinsfile`
+- In this section we'll configure `Jenkins-server` Instance to connect `jenkins-worker` Instance via SSH for distributed builds.
+- Follow the steps Mentioned [here](https://github.com/r4riyaz/essential-jenkins/tree/main/Ch04/04_02-ssh-agent)
 
-Place this in `apache-web/Jenkinsfile`:
+---
 
-```groovy
-pipeline {
-  agent any
+### ✅ 4. Push cloned repository to your own created repository on Github
 
-  stages {
-    stage('Clone Repo') {
-      steps {
-        git 'https://github.com/<your-username>/apache-docker-site.git'
-      }
-    }
-
-    stage('Build Docker Image') {
-      steps {
-        dir('apache-web') {
-          sh 'docker build -t apache-web .'
-        }
-      }
-    }
-
-    stage('Run Apache Container') {
-      steps {
-        sh 'docker stop apache-web || true'
-        sh 'docker rm apache-web || true'
-        sh 'docker run -d -p 80:80 --name apache-web apache-web'
-      }
-    }
-  }
-}
+- Run below command via Visual Studio Code
+  
+```bash 
+cd devops-project
+git remote -v
+git remote set-url origin <URL-OF-YOUR_REPO>
+git remote -v
+git branch -M main
+git push -u origin main
 ```
 
 ---
 
-### ✅ 7. Connect GitHub Webhook for CI/CD
+### ✅ 4. Configure Jenkins Pipeline
 
-1. In GitHub:
-
-   * Go to **Settings → Webhooks → Add Webhook**
-   * Payload URL: `http://<JENKINS_PUBLIC_IP>:8080/github-webhook/`
-   * Content Type: `application/json`
-   * Events: Just the push event
-
-2. In Jenkins:
-
-   * Enable `GitHub hook trigger for GITScm polling` in your pipeline job
+- Create a new pipeline project in your Jenkins server.
+    - Select `New Item`
+    - Enter item name (use the same name as your repo if possible)
+    - Select `Pipeline` project
+    - `OK`
+    - Select `GitHub Project` and paste in the `<URL-OF-YOUR_REPO><URL-OF-YOUR_REPO>`
+      - *NOTE: This step is optional.  It only creates a link to the repo on the project home page.*
+    - Under `Build Triggers`, select the checkbox next to `GitHub hook trigger for GITScm polling`.
+    - Under `Pipeline`, select `Pipeline script from SCM`.
+    - Under SCM, select `Git`.
+    - Under `Repository URL`, paste in the repo URL `<URL-OF-YOUR_REPO><URL-OF-YOUR_REPO>`
+    - Under `Branch Specifier (blank for 'any')`, change `master` to `main`.
+    - Under `Script Path` keep it as it is `Jenkinsfile`.
+    - `Save` &rarr; `Build Now`.
+    - *NOTE: The project must run at least one successful build before connecting to GitHub.  This allows Jenkins to read the configuration from the repo.*
+    - `Jenkinsfile` is present here &rarr; [Jenkinsfile](./Jenkinsfile) and it'll be in your repository as well.
 
 ---
 
-### ✅ 8. Access Your Apache Website
+### ✅ 5. Connect GitHub Webhook for CI/CD
+
+   * Copy your jenkins URL.
+   * In your Github repository, Go to **Settings → Webhooks → Add Webhook**
+   * Payload URL: `http://<JENKINS_PUBLIC_IP>/github-webhook/`
+   * Content Type: `application/json`
+   * Events: Just the push event
+
+---
+
+### ✅ 6. Access Your Apache Website
 
 Visit:
 
 ```
-http://<EC2_PUBLIC_IP>
+http://<Jenkins-worker-Public-IP>
 ```
 
 You should see your hosted static website from inside the Apache Docker container!
@@ -235,6 +236,3 @@ You should see your hosted static website from inside the Apache Docker containe
 **Riyaz Qureshi**
 GitHub: [@r4riyaz](https://github.com/r4riyaz)
 
-
-
-https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli#install-terraform
