@@ -1,11 +1,9 @@
 # Devops Project
 
-```markdown
+
 # 🚀 Apache Website Hosting with Docker, Terraform, Jenkins, and AWS
 
 This project demonstrates a complete end-to-end DevOps pipeline to **host a static website using Apache** inside a **Docker container** deployed to **AWS EC2**, provisioned using **Terraform**, and automated using **Jenkins CI/CD**. All code is version controlled using **Git & GitHub**.
-
----
 
 ## 🧰 Technologies Used
 
@@ -19,7 +17,6 @@ This project demonstrates a complete end-to-end DevOps pipeline to **host a stat
 | **Ubuntu**       | OS for EC2 instances                                    |
 | **AWS EC2**      | Host Jenkins and Docker containers                      |
 
----
 
 ## 📁 Project Structure
 
@@ -39,8 +36,6 @@ project-root/
 
 ````
 
----
-
 ## 🔧 Prerequisites
 
 Before you begin, ensure you have the following:
@@ -57,8 +52,6 @@ Before you begin, ensure you have the following:
 ---
 
 ## 🚀 Step-by-Step Deployment
-
----
 
 ### ✅ 1. Clone the Repository
 
@@ -278,16 +271,6 @@ You should see your hosted static website from inside the Apache Docker containe
 
 ---
 
-## 🌀 Optional Enhancements
-
-* Push Docker image to AWS ECR
-* Use Terraform modules for multi-tier architecture
-* Add Nginx reverse proxy or HTTPS with Let's Encrypt
-* Monitor EC2 instance with CloudWatch
-* Auto-scaling and Load Balancing with Terraform and AWS
-
----
-
 ## ✅ DevOps Practices Demonstrated
 
 | Practice                  | Tool / Technology      |
@@ -304,22 +287,5 @@ You should see your hosted static website from inside the Apache Docker containe
 
 ## 🙋 Author
 
-**Your Name**
-GitHub: [@yourusername](https://github.com/yourusername)
-
----
-
-## 📝 License
-
-This project is licensed under the MIT License. See the `LICENSE` file for details.
-
-```
-
----
-
-✅ **To Use It:**
-- Replace placeholders like `<your-username>`, `<EC2_PUBLIC_IP>`, and AWS details.
-- Push this file as `README.md` in your GitHub repo.
-
-Let me know if you'd like me to generate the actual project scaffolding (`.zip` or codebase) for you!
-```
+**Riyaz Qureshi**
+GitHub: [@r4riyaz](https://github.com/r4riyaz)
