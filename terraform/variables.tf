@@ -9,3 +9,7 @@ variable "ami_id" {
 variable "key_name" {
   default = "k8s"
 }
+
+variable "my_ip" {
+  default = "<myip>"  #add your Public IP
+}
