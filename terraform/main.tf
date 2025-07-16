@@ -11,17 +11,6 @@ resource "aws_instance" "jenkins_server" {
     Name = "jenkins-server"
   }
 
-  provisioner "remote-exec" {
-    inline = [
-      "sudo apt update",
-      "sudo apt install -y docker.io openjdk-11-jdk git",
-      "sudo usermod -aG docker ubuntu"
-    ]
-    connection {
-      type        = "ssh"
-      user        = "ubuntu"
-      private_key = file(var.private_key_path)
-      host        = self.public_ip
-    }
-  }
+output "instance_ip" {
+  value = aws_instance.jenkins_server.public_ip
 }
