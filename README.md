@@ -29,10 +29,10 @@ project-root/
 │   ├── start.sh
 │   └── Jenkinsfile
 └── terraform/
-├── main.tf
-├── variables.tf
-├── outputs.tf
-└── terraform.tfvars
+    ├── main.tf
+    ├── variables.tf
+    ├── outputs.tf
+    └── terraform.tfvars
 
 ````
 
