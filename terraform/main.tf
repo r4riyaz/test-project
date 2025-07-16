@@ -1,7 +1,3 @@
-provider "aws" {
-  region = var.aws_region
-}
-
 resource "aws_instance" "jenkins_server" {
   ami           = var.ami_id
   instance_type = "t2.micro"
@@ -11,6 +7,19 @@ resource "aws_instance" "jenkins_server" {
     Name = "jenkins-server"
   }
 
-output "instance_ip" {
+resource "aws_instance" "jenkins_worker" {
+  ami           = var.ami_id
+  instance_type = "t2.micro"
+  key_name      = var.key_name
+
+  tags = {
+    Name = "jenkins-worker"
+  }
+
+output "jenkins_server_ip" {
   value = aws_instance.jenkins_server.public_ip
+}
+
+output "jenkins_worker_ip" {
+  value = aws_instance.jenkins_worker.public_ip
 }
