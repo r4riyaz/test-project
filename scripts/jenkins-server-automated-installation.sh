@@ -1,14 +1,4 @@
 #!/bin/bash
-# vi: ft=bash
-
-echo "# $(date) Installation is starting."
-
-# Uncomment the following line if you are using this script
-# as user data for an EC2 instance on AWS.
-# Output from the installation will be written to /var/log/user-data.log
-#exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
-
-echo "# $(date) Install jenkins key and package configuration..."
 curl -fsSL https://pkg.jenkins.io/debian/jenkins.io-2023.key | tee \
     /usr/share/keyrings/jenkins-keyring.asc > /dev/null
 
