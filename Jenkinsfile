@@ -13,6 +13,7 @@ pipeline {
     stage('Build Docker Image') {
       steps {
         dir('apache-web') {
+          sh 'docker rmi --force apache-web || true'
           sh 'docker build -t apache-web .'
         }
       }
@@ -22,7 +23,7 @@ pipeline {
       steps {
         sh 'docker stop apache-web || true'
         sh 'docker rm apache-web || true'
-        sh 'docker run -d -p 80:80 --name apache-web apache-web'
+        sh 'docker run -d -p 8899:80 --name apache-web apache-web'
       }
     }
   }
