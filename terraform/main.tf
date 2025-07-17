@@ -2,6 +2,7 @@ resource "aws_instance" "jenkins_server" {
   ami           = var.ami_id
   instance_type = "t2.micro"
   key_name      = var.key_name
+  vpc_security_group_ids = [ aws_security_group.new-security-group.id ]
 
   tags = {
     Name = "jenkins-server"
