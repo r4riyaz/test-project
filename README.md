@@ -186,14 +186,16 @@ terraform apply
 
 - Login to you `Jenkins-server` Instance via SSH or via AWS console.
 - Get the admin password of Jenkins from `/root/initialAdminPassword`.
+- Install `Pipeline Graph Analysis Plugin` Plugin in Jenkins and click `restart`.
 - In this section we'll configure `Jenkins-server` Instance to connect `jenkins-worker` Instance via SSH for distributed builds.
-- Follow the steps Mentioned [here](https://github.com/r4riyaz/essential-jenkins/tree/main/Ch04/04_02-ssh-agent)
+- Follow the steps Mentioned [here](https://github.com/r4riyaz/essential-jenkins/tree/main/Ch04/04_02-ssh-agent#steps-to-configure-ssh-agent)
 
 ---
 
 ### ✅ 4. Push cloned repository to your own created repository on Github
 
-- Run below command via Visual Studio Code otherwise you need create [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token) to authenticate with Github while pushing the code.
+- Open Visual Studio Code and authenticate to Git.
+- Run below command via Visual Studio Code otherwise you need create [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token) to authenticate with Github from git cli while pushing the code.
   
 ```bash 
 cd devops-project
@@ -227,7 +229,17 @@ git push -u origin main
 
 ---
 
-### ✅ 5. Connect GitHub Webhook for CI/CD
+### ✅ 5. Access Your Apache Website
+
+Visit:
+
+```
+http://<Jenkins-worker-Public-IP>:8899
+```
+
+---
+
+### ✅ 6. Connect GitHub Webhook for CI/CD
 
    * Copy your jenkins URL.
    * In your Github repository, Go to **Settings → Webhooks → Add Webhook**
@@ -237,7 +249,13 @@ git push -u origin main
 
 ---
 
-### ✅ 6. Access Your Apache Website
+### ✅ 7. Again access Your Apache Website to see the changes
+- Make some changes in `apache-web/index.html` in you Github repository and commit the changes.
+- Now let's check again on Jenkins if it has triggered a new Build.
+
+---
+
+### ✅ 8. Again access Your Apache Website to see the changes
 
 Visit:
 
