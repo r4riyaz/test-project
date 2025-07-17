@@ -23,11 +23,14 @@ This project demonstrates a complete end-to-end DevOps pipeline to **host a stat
 ```
 
 devops-project/
+├── Jenkinsfile
+├── README.md
 ├── apache-web/
 │   ├── Dockerfile
 │   └── index.html
-├── Jenkinsfile
 └── terraform/
+    ├── jenkins-server.sh
+    ├── jenkins-worker.sh
     ├── main.tf
     └── variables.tf
 
@@ -77,9 +80,7 @@ resource "aws_instance" "jenkins_server" {
   tags = {
     Name = "jenkins-server"
   }
-  user_data = <<-EOF
-                #script to install Jenkins server
-                EOF
+  user_data = file('jenkins-server.sh')
 }
 resource "aws_instance" "jenkins_worker" {
   ami           = var.ami_id
@@ -91,9 +92,7 @@ resource "aws_instance" "jenkins_worker" {
     Name = "jenkins-worker"
   }
   
-  user_data = <<-EOF
-                #script to install Jenkins client
-                EOF
+  user_data = file('jenkins-worker.sh')
 
 }
 
@@ -123,6 +122,7 @@ output "jenkins_server_ip" {
 output "jenkins_worker_ip" {
   value = aws_instance.jenkins_worker.public_ip
 }
+
 ```
 
 
@@ -140,6 +140,11 @@ variable "ami_id" {
 variable "key_name" {
   default = "k8s"
 }
+
+variable "my_ip" {
+  default = "<myip>"  #add your Public IP
+}
+
 ```
 
 #### Run Terraform Commands
