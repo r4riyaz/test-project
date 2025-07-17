@@ -80,7 +80,7 @@ resource "aws_instance" "jenkins_server" {
   tags = {
     Name = "jenkins-server"
   }
-  user_data = file('jenkins-server.sh')
+  user_data = file(jenkins-server.sh)
 }
 resource "aws_instance" "jenkins_worker" {
   ami           = var.ami_id
@@ -92,7 +92,7 @@ resource "aws_instance" "jenkins_worker" {
     Name = "jenkins-worker"
   }
   
-  user_data = file('jenkins-worker.sh')
+  user_data = file(jenkins-worker.sh)
 
 }
 
