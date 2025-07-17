@@ -27,7 +27,6 @@ devops-project/
 │   ├── Dockerfile
 │   └── index.html
 ├── Jenkinsfile
-├── scripts
 └── terraform/
     ├── main.tf
     └── variables.tf
