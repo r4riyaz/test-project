@@ -6,9 +6,7 @@ resource "aws_instance" "jenkins_server" {
   tags = {
     Name = "jenkins-server"
   }
-  user_data = <<-EOF
-                #script to install Jenkins server
-                EOF
+  user_data = file('jenkins-server.sh')
 }
 resource "aws_instance" "jenkins_worker" {
   ami           = var.ami_id
@@ -20,9 +18,7 @@ resource "aws_instance" "jenkins_worker" {
     Name = "jenkins-worker"
   }
   
-  user_data = <<-EOF
-                #script to install Jenkins client
-                EOF
+  user_data = file('jenkins-worker.sh')
 
 }
 
