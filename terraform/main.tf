@@ -6,7 +6,7 @@ resource "aws_instance" "jenkins_server" {
   tags = {
     Name = "jenkins-server"
   }
-  user_data = file(jenkins-server.sh)
+  user_data = file("jenkins-server.sh")
 }
 resource "aws_instance" "jenkins_worker" {
   ami           = var.ami_id
@@ -18,7 +18,7 @@ resource "aws_instance" "jenkins_worker" {
     Name = "jenkins-worker"
   }
   
-  user_data = file(jenkins-worker.sh)
+  user_data = file("jenkins-worker.sh")
 
 }
 
@@ -37,7 +37,7 @@ resource "aws_security_group" "new-security-group" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = [var.my_ip]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
 
