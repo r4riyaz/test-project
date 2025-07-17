@@ -263,8 +263,16 @@ Visit:
 http://<Jenkins-worker-Public-IP>:8899
 ```
 
-You should see your hosted static website from inside the Apache Docker container!
+---
 
+### ✅ 9. Cleanup
+- run below command in your local VM from `devops-project/terraform` directory
+```
+terraform destroy
+```
+- Check if your EC2 instances & Security groups have been deleted
+- Remove the IAM user.
+  
 ---
 
 ## ✅ DevOps Practices Demonstrated
