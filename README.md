@@ -25,9 +25,9 @@ This project demonstrates a complete end-to-end DevOps pipeline to **host a stat
 devops-project/
 ├── apache-web/
 │   ├── Dockerfile
-│   ├── index.html
-│   ├── start.sh
-│   └── Jenkinsfile
+│   └── index.html
+├── Jenkinsfile
+├── scripts
 └── terraform/
     ├── main.tf
     └── variables.tf
@@ -210,7 +210,7 @@ git push -u origin main
 Visit:
 
 ```
-http://<Jenkins-worker-Public-IP>
+http://<Jenkins-worker-Public-IP>:8899
 ```
 
 You should see your hosted static website from inside the Apache Docker container!
