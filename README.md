@@ -66,8 +66,7 @@ cd devops-project
 ### ✅ 2. Provision AWS EC2 Instances with Terraform
 
 - Navigate to the `terraform/` directory locally:
-- Script Patch: [Jenkins-server](scripts/jenkins-server-automated-installation.sh) & [Jenkins-worker](scripts/jenkins-worker-automated-installation.sh)
-- Paste these scripts in User_data section in `main.tf` file.
+- Mak sure to add your Public IP address in `my_ip` variable in `variables.tf`
 
 #### 📄 `main.tf`
 
@@ -80,7 +79,7 @@ resource "aws_instance" "jenkins_server" {
   tags = {
     Name = "jenkins-server"
   }
-  user_data = file(jenkins-server.sh)
+  user_data = file("jenkins-server.sh")
 }
 resource "aws_instance" "jenkins_worker" {
   ami           = var.ami_id
@@ -92,7 +91,7 @@ resource "aws_instance" "jenkins_worker" {
     Name = "jenkins-worker"
   }
   
-  user_data = file(jenkins-worker.sh)
+  user_data = file("jenkins-worker.sh")
 
 }
 
