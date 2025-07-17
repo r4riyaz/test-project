@@ -38,7 +38,7 @@ devops-project/
 
 Before you begin, ensure you have the following:
 
-- a Base machine/Virtual machine for operations
+- A base machine/Virtual machine for operations
 - Terraform installed on your Base Machine/Virtual Machine [Install Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli#install-terraform)
 - VSCode Installed on your Base Machine/Virtual Machine [Install VSCode](https://code.visualstudio.com/docs/setup/linux)
 - AWS account with an IAM user and access keys
@@ -161,7 +161,7 @@ terraform apply
 
 ### ✅ 4. Push cloned repository to your own created repository on Github
 
-- Run below command via Visual Studio Code
+- Run below command via Visual Studio Code otherwise you need create [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token) to authenticate with Github while pushing the code.
   
 ```bash 
 cd devops-project
